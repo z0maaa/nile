@@ -42,7 +42,6 @@ function DocumentUploadCard({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate size (15MB)
     if (file.size > 15 * 1024 * 1024) {
       setLocalError(isRtl ? 'حجم الملف يتجاوز الحد الأقصى المسموح به (15 ميجابايت)' : 'File size exceeds maximum 15MB limit');
       return;
@@ -85,35 +84,35 @@ function DocumentUploadCard({
   const isImage = currentUrl && (currentUrl.endsWith('.jpg') || currentUrl.endsWith('.jpeg') || currentUrl.endsWith('.png') || currentUrl.includes('unsplash') || currentUrl.includes('.webp'));
 
   return (
-    <div className={`p-5 rounded-2xl bg-surface border transition-all ${error ? 'border-rose-500/50' : 'border-white/10 hover:border-gold-500/30'}`}>
+    <div className={`p-5 rounded-2xl bg-white border transition-all ${error ? 'border-rose-400' : 'border-slate-200 hover:border-emerald-400 shadow-sm'}`}>
       <div className="flex items-center justify-between gap-2 mb-3">
-        <label className="text-xs font-bold text-zinc-200">
-          {label} {required && <span className="text-gold-400">*</span>}
+        <label className="text-xs font-bold text-navy-900">
+          {label} {required && <span className="text-emerald-600">*</span>}
         </label>
-        <span className="text-[10px] text-zinc-500 font-mono">{allowedFormats}</span>
+        <span className="text-[10px] text-slate-500 font-mono font-medium">{allowedFormats}</span>
       </div>
 
       {currentUrl ? (
         <div className="space-y-3">
-          <div className="relative rounded-xl overflow-hidden border border-gold-500/30 bg-surface-card p-2 flex items-center justify-between">
+          <div className="relative rounded-xl overflow-hidden border border-emerald-300 bg-emerald-50/30 p-2 flex items-center justify-between">
             <div className="flex items-center gap-3">
               {isImage ? (
                 <img
                   src={currentUrl}
                   alt={label}
-                  className="w-14 h-14 object-cover rounded-lg border border-white/10"
+                  className="w-14 h-14 object-cover rounded-lg border border-slate-200"
                 />
               ) : (
-                <div className="w-14 h-14 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-gold-400">
+                <div className="w-14 h-14 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-emerald-600">
                   <FileText className="w-7 h-7" />
                 </div>
               )}
               <div>
-                <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                   <span>{t.form.uploaded}</span>
                 </span>
-                <span className="text-[11px] text-zinc-400 truncate max-w-[180px] block font-mono mt-0.5">
+                <span className="text-[11px] text-slate-500 truncate max-w-[180px] block font-mono mt-0.5">
                   {currentUrl.split('/').pop()}
                 </span>
               </div>
@@ -124,7 +123,7 @@ function DocumentUploadCard({
                 href={currentUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 rounded-lg bg-surface border border-white/10 hover:border-gold-500/40 text-zinc-300 hover:text-gold-300 text-xs transition-all"
+                className="p-2 rounded-lg bg-white border border-slate-200 hover:border-emerald-400 text-slate-700 hover:text-emerald-700 text-xs transition-all shadow-sm"
                 title="View preview"
               >
                 <Eye className="w-4 h-4" />
@@ -132,7 +131,7 @@ function DocumentUploadCard({
               <button
                 type="button"
                 onClick={onRemove}
-                className="p-2 rounded-lg bg-surface border border-rose-500/20 hover:border-rose-500/60 text-rose-400 hover:text-rose-300 text-xs transition-all"
+                className="p-2 rounded-lg bg-white border border-rose-200 hover:border-rose-400 text-rose-600 hover:text-rose-700 text-xs transition-all shadow-sm"
                 title="Remove file"
               >
                 <Trash2 className="w-4 h-4" />
@@ -142,7 +141,7 @@ function DocumentUploadCard({
         </div>
       ) : (
         <div>
-          <label className="relative flex flex-col items-center justify-center p-6 border-2 border-dashed border-white/10 hover:border-gold-500/50 rounded-xl cursor-pointer bg-surface-card/60 hover:bg-surface-card transition-all group">
+          <label className="relative flex flex-col items-center justify-center p-6 border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-xl cursor-pointer bg-slate-50/70 hover:bg-emerald-50/20 transition-all group">
             <input
               type="file"
               accept={accept}
@@ -152,22 +151,22 @@ function DocumentUploadCard({
             />
             {uploading ? (
               <div className="w-full text-center space-y-2">
-                <div className="w-6 h-6 border-2 border-gold-400 border-t-transparent rounded-full animate-spin mx-auto" />
-                <span className="text-xs text-gold-300 font-medium">Uploading {progress}%...</span>
-                <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
+                <div className="w-6 h-6 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto" />
+                <span className="text-xs text-emerald-700 font-bold">Uploading {progress}%...</span>
+                <div className="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
                   <div
-                    className="bg-gold-500 h-full transition-all duration-300"
+                    className="bg-emerald-600 h-full transition-all duration-300"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
               </div>
             ) : (
               <>
-                <UploadCloud className="w-8 h-8 text-zinc-500 group-hover:text-gold-400 transition-colors mb-2" />
-                <span className="text-xs font-semibold text-zinc-300 group-hover:text-gold-300 transition-colors text-center">
+                <UploadCloud className="w-8 h-8 text-slate-400 group-hover:text-emerald-600 transition-colors mb-2" />
+                <span className="text-xs font-bold text-slate-700 group-hover:text-emerald-700 transition-colors text-center">
                   {t.form.uploadBtn}
                 </span>
-                <span className="text-[10px] text-zinc-500 mt-1">Max 15MB • Secure storage</span>
+                <span className="text-[10px] text-slate-400 mt-1">Max 15MB • Secure storage</span>
               </>
             )}
           </label>
@@ -175,14 +174,14 @@ function DocumentUploadCard({
       )}
 
       {localError && (
-        <div className="flex items-center gap-1.5 text-rose-400 text-xs mt-2">
+        <div className="flex items-center gap-1.5 text-rose-600 text-xs mt-2 font-medium">
           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
           <span>{localError}</span>
         </div>
       )}
 
       {error && !currentUrl && (
-        <p className="text-rose-400 text-xs mt-1.5">{error}</p>
+        <p className="text-rose-600 text-xs mt-1.5 font-medium">{error}</p>
       )}
     </div>
   );
@@ -194,20 +193,20 @@ export default function Step5Documents({ formData, updateFormData, errors }: Ste
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header */}
-      <div className="border-b border-white/10 pb-4">
-        <h3 className="text-xl font-black text-white flex items-center gap-2">
-          <FileText className="w-5 h-5 text-gold-400" />
+      <div className="border-b border-slate-200 pb-4">
+        <h3 className="text-xl font-black text-navy-900 flex items-center gap-2">
+          <FileText className="w-5 h-5 text-emerald-600" />
           <span>{t.form.step5Title}</span>
         </h3>
-        <p className="text-xs text-zinc-400 mt-1">{t.form.step5Desc}</p>
+        <p className="text-xs text-slate-500 mt-1">{t.form.step5Desc}</p>
       </div>
 
       {/* Security notice banner */}
-      <div className="p-4 rounded-xl bg-gold-950/20 border border-gold-500/20 text-xs text-zinc-300 flex items-start gap-3">
-        <ShieldCheck className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
+      <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-start gap-3">
+        <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
         <div>
-          <strong className="block text-gold-300 font-bold mb-0.5">Encrypted Document Vault</strong>
-          <p>{t.form.secureStorageNotice}</p>
+          <strong className="block text-emerald-950 font-bold mb-0.5">Encrypted Document Vault</strong>
+          <p className="text-emerald-800">{t.form.secureStorageNotice}</p>
         </div>
       </div>
 
@@ -290,4 +289,3 @@ export default function Step5Documents({ formData, updateFormData, errors }: Ste
     </div>
   );
 }
-

@@ -61,24 +61,24 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="w-full max-w-xl mx-auto p-4 sm:p-6 rounded-2xl glass-card border border-gold-500/30 shadow-glow relative overflow-hidden">
-      {/* Background ambient glow */}
-      <div className="absolute -top-12 -right-12 w-36 h-36 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
+    <div className="w-full max-w-xl mx-auto p-4 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-card relative overflow-hidden">
+      {/* Background ambient decorative shapes */}
+      <div className="absolute -top-12 -right-12 w-36 h-36 bg-emerald-100/50 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-navy-100/50 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header */}
-      <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10 text-xs">
-        <div className="flex items-center gap-2 text-gold-400 font-bold tracking-wider uppercase">
-          <Clock className="w-4 h-4 animate-pulse" />
+      <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100 text-xs">
+        <div className="flex items-center gap-2 text-emerald-700 font-bold tracking-wider uppercase">
+          <Clock className="w-4 h-4 animate-pulse text-emerald-600" />
           <span>{t.hero.deadlineBadge}</span>
         </div>
-        <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold text-[11px]">
+        <span className="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 font-semibold text-[11px]">
           12 NOV 2026
         </span>
       </div>
 
       {timeLeft.isEnded ? (
-        <div className="py-4 text-center text-rose-400 font-bold flex items-center justify-center gap-2">
+        <div className="py-4 text-center text-rose-600 font-bold flex items-center justify-center gap-2">
           <AlertCircle className="w-5 h-5" />
           <span>{t.hero.countdownEnded}</span>
         </div>
@@ -87,12 +87,12 @@ export default function CountdownTimer() {
           {units.map((unit, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-surface border border-white/5 shadow-inner group hover:border-gold-500/40 transition-all"
+              className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/80 shadow-sm group hover:border-emerald-400 hover:bg-emerald-50/30 transition-all"
             >
-              <span className="text-2xl sm:text-4xl font-black text-gold-shimmer tabular-nums">
+              <span className="text-2xl sm:text-4xl font-black text-navy-900 tabular-nums">
                 {String(unit.value).padStart(2, '0')}
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold text-zinc-400 uppercase tracking-wider mt-1">
+              <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">
                 {unit.label}
               </span>
             </div>
@@ -102,4 +102,3 @@ export default function CountdownTimer() {
     </div>
   );
 }
-

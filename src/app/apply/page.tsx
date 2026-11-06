@@ -11,7 +11,7 @@ import Step4Musical from '@/components/FormSteps/Step4Musical';
 import Step5Documents from '@/components/FormSteps/Step5Documents';
 import Step6Video from '@/components/FormSteps/Step6Video';
 import ConfirmationScreen from '@/components/FormSteps/ConfirmationScreen';
-import { ArrowLeft, ArrowRight, Check, Sparkles, User, MapPin, GraduationCap, Music, FileText, Video } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, User, MapPin, GraduationCap, Music, FileText, Video } from 'lucide-react';
 
 export default function ApplyPage() {
   const { t, isRtl } = useLanguage();
@@ -111,7 +111,6 @@ export default function ApplyPage() {
 
   const updateFormData = (fields: Record<string, any>) => {
     setFormData((prev) => ({ ...prev, ...fields }));
-    // Clear errors for modified fields
     setErrors((prev) => {
       const copy = { ...prev };
       Object.keys(fields).forEach((key) => delete copy[key]);
@@ -244,7 +243,7 @@ export default function ApplyPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       <Navbar />
 
       <main className="flex-1 py-10 px-4 sm:px-6 lg:px-8">
@@ -252,13 +251,13 @@ export default function ApplyPage() {
           {/* Header Title Banner */}
           {!submissionResult && (
             <div className="text-center space-y-3">
-              <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 border border-gold-500/30">
+              <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
                 {t.brand} • Open Call
               </span>
-              <h1 className="text-2xl sm:text-4xl font-black text-white">
+              <h1 className="text-2xl sm:text-4xl font-black text-navy-900">
                 {t.form.headerTitle}
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">
+              <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-medium">
                 {t.form.headerSubtitle}
               </p>
 
@@ -268,30 +267,29 @@ export default function ApplyPage() {
                   {stepIcons.map((s) => {
                     const isCompleted = currentStep > s.num;
                     const isCurrent = currentStep === s.num;
-                    const Icon = s.icon;
                     return (
                       <div
                         key={s.num}
                         className={`flex flex-col items-center p-2 rounded-xl border transition-all ${
                           isCurrent
-                            ? 'bg-gold-500/15 border-gold-500 text-gold-300 shadow-glow'
+                            ? 'bg-emerald-50 border-emerald-500 text-emerald-800 shadow-sm'
                             : isCompleted
-                            ? 'bg-surface border-emerald-500/40 text-emerald-400'
-                            : 'bg-surface/50 border-white/5 text-zinc-600'
+                            ? 'bg-white border-emerald-300 text-emerald-700'
+                            : 'bg-white/60 border-slate-200 text-slate-400'
                         }`}
                       >
                         <div
                           className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold mb-1 ${
                             isCurrent
-                              ? 'bg-gold-500 text-zinc-950 font-black'
+                              ? 'bg-gradient-to-r from-navy-900 to-emerald-600 text-white font-black'
                               : isCompleted
-                              ? 'bg-emerald-500 text-zinc-950 font-black'
-                              : 'bg-zinc-800 text-zinc-400'
+                              ? 'bg-emerald-600 text-white font-black'
+                              : 'bg-slate-200 text-slate-600'
                           }`}
                         >
                           {isCompleted ? <Check className="w-3.5 h-3.5" /> : s.num}
                         </div>
-                        <span className="text-[10px] font-semibold truncate hidden sm:block">
+                        <span className="text-[10px] font-bold truncate hidden sm:block">
                           {s.label}
                         </span>
                       </div>
@@ -303,7 +301,7 @@ export default function ApplyPage() {
           )}
 
           {/* Form Card Body */}
-          <div className="p-6 sm:p-10 rounded-3xl glass-card border border-white/10 shadow-2xl relative">
+          <div className="p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-xl relative">
             {submissionResult ? (
               <ConfirmationScreen
                 referenceNumber={submissionResult.referenceNumber}
@@ -363,12 +361,12 @@ export default function ApplyPage() {
 
                 {/* Navigation Buttons (Steps 1 through 5) */}
                 {currentStep < 6 && (
-                  <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between gap-4">
+                  <div className="mt-10 pt-6 border-t border-slate-200 flex items-center justify-between gap-4">
                     {currentStep > 1 ? (
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 bg-surface hover:bg-zinc-800 text-zinc-300 text-xs font-bold transition-all"
+                        className="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all"
                       >
                         {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
                         <span>{t.form.prev}</span>
@@ -380,7 +378,7 @@ export default function ApplyPage() {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gold-gradient text-zinc-950 text-xs font-black tracking-wider uppercase shadow-glow hover:shadow-glow-lg transition-all active:scale-95"
+                      className="flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-navy-900 via-navy-800 to-emerald-600 hover:from-navy-950 hover:to-emerald-700 text-white text-xs font-black tracking-wider uppercase shadow-md hover:shadow-lg transition-all active:scale-95"
                     >
                       <span>{t.form.next}</span>
                       {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
@@ -397,4 +395,3 @@ export default function ApplyPage() {
     </div>
   );
 }
-

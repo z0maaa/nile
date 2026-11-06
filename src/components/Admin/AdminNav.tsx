@@ -10,9 +10,7 @@ import {
   MapPin,
   ClipboardList,
   LogOut,
-  Shield,
   Music2,
-  Globe,
   ExternalLink,
 } from 'lucide-react';
 
@@ -27,7 +25,7 @@ interface AdminNavProps {
 export default function AdminNav({ currentUser }: AdminNavProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { lang, toggleLang, isRtl } = useLanguage();
+  const { lang, toggleLang } = useLanguage();
 
   const handleLogout = async () => {
     try {
@@ -47,22 +45,22 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
   ];
 
   return (
-    <header className="border-b border-white/10 bg-surface sticky top-0 z-40">
+    <header className="border-b border-slate-200 bg-white sticky top-0 z-40 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-16 flex items-center justify-between gap-4">
           {/* Logo & Portal Badge */}
           <div className="flex items-center gap-3">
             <Link href="/admin/dashboard" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-gold-gradient p-[1px]">
-                <div className="w-full h-full bg-zinc-950 rounded-[7px] flex items-center justify-center">
-                  <Music2 className="w-4 h-4 text-gold-400" />
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-navy-900 to-emerald-600 p-[1px] shadow-sm">
+                <div className="w-full h-full bg-white rounded-[7px] flex items-center justify-center">
+                  <Music2 className="w-4 h-4 text-navy-900" />
                 </div>
               </div>
-              <span className="font-extrabold text-base tracking-wide text-white">
+              <span className="font-extrabold text-base tracking-wide text-navy-900">
                 UTH 2026
               </span>
             </Link>
-            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-gold-500/20 text-gold-300 border border-gold-500/30">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
               Admin Portal
             </span>
           </div>
@@ -76,10 +74,10 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     isActive
-                      ? 'bg-gold-500 text-zinc-950 font-bold shadow-glow'
-                      : 'text-zinc-400 hover:text-white hover:bg-surface-card'
+                      ? 'bg-navy-900 text-white shadow-sm'
+                      : 'text-slate-600 hover:text-navy-900 hover:bg-slate-100'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -92,12 +90,12 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
           {/* Right Controls: User Role Badge, Public Site Link, Logout */}
           <div className="flex items-center gap-3">
             {currentUser && (
-              <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-surface-card border border-white/10 text-xs">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-zinc-300 font-medium truncate max-w-[120px]">
+              <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-slate-700 font-semibold truncate max-w-[120px]">
                   {currentUser.name.split(' ')[0]}
                 </span>
-                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-zinc-800 text-gold-300 border border-white/5 uppercase">
+                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">
                   {currentUser.role}
                 </span>
               </div>
@@ -105,7 +103,7 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
 
             <button
               onClick={toggleLang}
-              className="p-2 rounded-lg border border-white/10 bg-surface-card text-gold-400 text-xs font-bold hover:border-gold-500/40"
+              className="p-2 rounded-lg border border-slate-200 bg-slate-50 text-navy-900 text-xs font-bold hover:border-emerald-500"
               title="Toggle Language"
             >
               {lang === 'ar' ? 'EN' : 'عربي'}
@@ -114,7 +112,7 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
             <Link
               href="/"
               target="_blank"
-              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 hover:border-zinc-500 bg-surface-card text-xs text-zinc-400 hover:text-zinc-200 transition-all"
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 bg-white text-xs text-slate-600 hover:text-navy-900 transition-all font-medium"
               title="View Public Site"
             >
               <ExternalLink className="w-3.5 h-3.5" />
@@ -123,7 +121,7 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-500/30 hover:bg-rose-950/20 text-xs font-semibold text-rose-400 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-200 hover:bg-rose-50 text-xs font-bold text-rose-600 transition-all"
               title="Sign Out"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -133,7 +131,7 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
         </div>
 
         {/* Mobile Navigation Bar */}
-        <div className="md:hidden flex items-center justify-around py-2 border-t border-white/5 text-xs">
+        <div className="md:hidden flex items-center justify-around py-2 border-t border-slate-100 text-xs">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href || (link.href !== '/admin/dashboard' && pathname.startsWith(link.href));
@@ -142,7 +140,7 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
                 key={link.href}
                 href={link.href}
                 className={`flex flex-col items-center gap-1 py-1 px-2 rounded-md ${
-                  isActive ? 'text-gold-400 font-bold' : 'text-zinc-400'
+                  isActive ? 'text-emerald-700 font-bold' : 'text-slate-600'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -155,4 +153,3 @@ export default function AdminNav({ currentUser }: AdminNavProps) {
     </header>
   );
 }
-

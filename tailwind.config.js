@@ -8,21 +8,34 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#08080A",
-        surface: "#111116",
-        "surface-card": "#171720",
-        "surface-border": "#272736",
-        gold: {
-          50: "#FCF9EE",
-          100: "#F7F0D4",
-          200: "#EFE0A6",
-          300: "#E4CE74",
-          400: "#D9BC49",
-          500: "#D4AF37", // Primary Royal Gold
-          600: "#B89225",
-          700: "#92711D",
-          800: "#75581D",
-          900: "#634A1E",
+        background: "#FFFFFF",
+        surface: "#F8FAFC", // slate-50
+        "surface-card": "#FFFFFF",
+        "surface-border": "#E2E8F0", // slate-200
+        navy: {
+          50: "#F0F4F8",
+          100: "#D9E2EC",
+          200: "#BCCCDC",
+          300: "#9FB3C8",
+          400: "#627D98",
+          500: "#334E68",
+          600: "#243B53",
+          700: "#1B365D",
+          800: "#0F2744",
+          900: "#0A192F", // Deep Royal Navy
+          950: "#050E1A",
+        },
+        emerald: {
+          50: "#ECFDF5",
+          100: "#D1FAE5",
+          200: "#A7F3D0",
+          300: "#6EE7B7",
+          400: "#34D399",
+          500: "#10B981", // Musical Emerald Green
+          600: "#059669",
+          700: "#047857",
+          800: "#065F46",
+          900: "#064E3B",
         },
       },
       fontFamily: {
@@ -30,11 +43,12 @@ module.exports = {
         arabic: ["Cairo", "Tajawal", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        glow: "0 0 25px -5px rgba(212, 175, 55, 0.3)",
-        "glow-lg": "0 0 40px -10px rgba(212, 175, 55, 0.45)",
+        subtle: "0 2px 10px rgba(10, 25, 47, 0.04), 0 1px 3px rgba(10, 25, 47, 0.02)",
+        glow: "0 0 20px -3px rgba(16, 185, 129, 0.25)",
+        "glow-navy": "0 0 20px -3px rgba(10, 25, 47, 0.2)",
+        card: "0 10px 30px -5px rgba(10, 25, 47, 0.06), 0 4px 6px -2px rgba(10, 25, 47, 0.02)",
       },
     },
   },
   plugins: [],
 };
-

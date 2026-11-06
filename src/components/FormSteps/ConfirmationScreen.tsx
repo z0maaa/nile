@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import confetti from 'canvas-confetti';
-import { CheckCircle, Award, Printer, ArrowRight, ArrowLeft, Video, MapPin, Calendar, Share2 } from 'lucide-react';
+import { CheckCircle, Printer, ArrowRight, ArrowLeft, MapPin } from 'lucide-react';
 
 interface ConfirmationProps {
   referenceNumber: string;
@@ -28,17 +28,14 @@ export default function ConfirmationScreen({
   const { t, isRtl } = useLanguage();
 
   useEffect(() => {
-    // Trigger confetti celebration
     try {
       confetti({
         particleCount: 90,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#D4AF37', '#FFFFFF', '#F59E0B', '#10B981'],
+        colors: ['#0A192F', '#10B981', '#059669', '#34D399'],
       });
-    } catch (e) {
-      // safe fallback
-    }
+    } catch (e) {}
   }, []);
 
   const handlePrint = () => {
@@ -46,78 +43,78 @@ export default function ConfirmationScreen({
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8 py-8 animate-fadeIn">
+    <div className="max-w-2xl mx-auto space-y-8 py-8 animate-fadeIn text-slate-900">
       {/* Success Badge & Headline */}
       <div className="text-center space-y-4">
-        <div className="w-20 h-20 rounded-full bg-gold-gradient p-1 mx-auto shadow-glow-lg animate-bounce">
-          <div className="w-full h-full bg-zinc-950 rounded-full flex items-center justify-center">
-            <CheckCircle className="w-10 h-10 text-gold-400" />
+        <div className="w-20 h-20 rounded-full bg-emerald-100 border border-emerald-300 p-1 mx-auto shadow-md animate-bounce">
+          <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
+            <CheckCircle className="w-10 h-10 text-emerald-600" />
           </div>
         </div>
 
         <div className="space-y-2">
-          <span className="text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 border border-gold-500/30">
+          <span className="text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
             {t.success.congratulations}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-white">
+          <h2 className="text-2xl sm:text-3xl font-black text-navy-900">
             {t.success.headline}
           </h2>
         </div>
       </div>
 
       {/* Official Reference Number Box */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-gold-950/40 via-surface-card to-zinc-950 border-2 border-gold-500/50 text-center shadow-glow space-y-2">
-        <span className="text-xs text-zinc-400 font-semibold uppercase tracking-wider block">
+      <div className="p-6 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-800 text-white text-center shadow-lg space-y-2">
+        <span className="text-xs text-slate-300 font-bold uppercase tracking-wider block">
           {t.success.refLabel}
         </span>
-        <div className="text-3xl sm:text-4xl font-mono font-black text-gold-shimmer tracking-wider select-all">
+        <div className="text-3xl sm:text-4xl font-mono font-black text-emerald-400 tracking-wider select-all">
           {referenceNumber}
         </div>
-        <p className="text-xs text-zinc-400 max-w-md mx-auto pt-1">
+        <p className="text-xs text-slate-300 max-w-md mx-auto pt-1 font-medium">
           {t.success.keepSafe}
         </p>
       </div>
 
       {/* Summary Dossier Card */}
-      <div className="p-6 rounded-2xl bg-surface border border-white/10 space-y-4">
-        <h4 className="text-sm font-bold text-white pb-3 border-b border-white/10 flex items-center justify-between">
+      <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 shadow-sm">
+        <h4 className="text-sm font-bold text-navy-900 pb-3 border-b border-slate-200 flex items-center justify-between">
           <span>{t.success.detailsSummary}</span>
-          <span className="text-xs text-gold-400 font-mono">
+          <span className="text-xs text-emerald-700 font-mono font-bold">
             {new Date(submittedAt).toLocaleString(isRtl ? 'ar-EG' : 'en-US')}
           </span>
         </h4>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div>
-            <span className="text-zinc-500 block uppercase text-[10px]">{t.success.applicantName}</span>
-            <strong className="text-zinc-200 block text-sm mt-0.5">{applicantName}</strong>
+            <span className="text-slate-500 block uppercase text-[10px] font-bold">{t.success.applicantName}</span>
+            <strong className="text-navy-900 block text-sm mt-0.5">{applicantName}</strong>
           </div>
           <div>
-            <span className="text-zinc-500 block uppercase text-[10px]">{t.success.artistName}</span>
-            <strong className="text-gold-300 block text-sm mt-0.5">{artistName}</strong>
+            <span className="text-slate-500 block uppercase text-[10px] font-bold">{t.success.artistName}</span>
+            <strong className="text-emerald-700 block text-sm mt-0.5">{artistName}</strong>
           </div>
           <div>
-            <span className="text-zinc-500 block uppercase text-[10px]">{t.success.category}</span>
-            <strong className="text-zinc-200 block text-sm mt-0.5">{category}</strong>
+            <span className="text-slate-500 block uppercase text-[10px] font-bold">{t.success.category}</span>
+            <strong className="text-navy-900 block text-sm mt-0.5">{category}</strong>
           </div>
           <div>
-            <span className="text-zinc-500 block uppercase text-[10px]">{isRtl ? 'مكان وموعد المهرجان' : 'Venue & Date'}</span>
-            <strong className="text-zinc-200 block text-sm mt-0.5">
+            <span className="text-slate-500 block uppercase text-[10px] font-bold">{isRtl ? 'مكان وموعد المهرجان' : 'Venue & Date'}</span>
+            <strong className="text-navy-900 block text-sm mt-0.5">
               Grand Egyptian Museum (Nov 20–21, 2026)
             </strong>
           </div>
         </div>
 
-        <div className="pt-3 border-t border-white/5 space-y-2 text-xs">
+        <div className="pt-3 border-t border-slate-200 space-y-2 text-xs">
           {hasVideo && (
-            <div className="flex items-center gap-2 text-emerald-400">
-              <CheckCircle className="w-4 h-4 shrink-0" />
+            <div className="flex items-center gap-2 text-emerald-700 font-semibold">
+              <CheckCircle className="w-4 h-4 shrink-0 text-emerald-600" />
               <span>{t.success.videoReceived}</span>
             </div>
           )}
           {hasGps && (
-            <div className="flex items-center gap-2 text-gold-400">
-              <MapPin className="w-4 h-4 shrink-0" />
+            <div className="flex items-center gap-2 text-navy-900 font-semibold">
+              <MapPin className="w-4 h-4 shrink-0 text-emerald-600" />
               <span>{t.success.locationReceived}</span>
             </div>
           )}
@@ -125,11 +122,11 @@ export default function ConfirmationScreen({
       </div>
 
       {/* Next Steps Guide */}
-      <div className="p-6 rounded-2xl bg-surface-card border border-white/10 space-y-3 text-xs leading-relaxed">
-        <h4 className="text-sm font-bold text-gold-300 mb-2">{t.success.nextStepsTitle}</h4>
-        <p className="text-zinc-300">{t.success.step1}</p>
-        <p className="text-zinc-300">{t.success.step2}</p>
-        <p className="text-zinc-300">{t.success.step3}</p>
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-3 text-xs leading-relaxed shadow-sm">
+        <h4 className="text-sm font-bold text-navy-900 mb-2">{t.success.nextStepsTitle}</h4>
+        <p className="text-slate-700">{t.success.step1}</p>
+        <p className="text-slate-700">{t.success.step2}</p>
+        <p className="text-slate-700">{t.success.step3}</p>
       </div>
 
       {/* Action Buttons */}
@@ -137,15 +134,15 @@ export default function ConfirmationScreen({
         <button
           type="button"
           onClick={handlePrint}
-          className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl border border-white/20 bg-surface hover:bg-zinc-800 text-zinc-200 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+          className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm"
         >
-          <Printer className="w-4 h-4 text-gold-400" />
+          <Printer className="w-4 h-4 text-emerald-600" />
           <span>{t.success.printBtn}</span>
         </button>
 
         <Link
           href="/"
-          className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl bg-gold-gradient text-zinc-950 text-xs font-bold flex items-center justify-center gap-2 shadow-glow hover:shadow-glow-lg transition-all"
+          className="w-full sm:w-auto flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-navy-900 to-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all"
         >
           <span>{t.success.homeBtn}</span>
           {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
@@ -154,4 +151,3 @@ export default function ConfirmationScreen({
     </div>
   );
 }
-

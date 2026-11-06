@@ -36,3 +36,4 @@ next-env.d.ts
 # Uploaded user files (optional, but keep folder structure)
 uploads/*
 !uploads/.gitkeep
+

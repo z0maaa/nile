@@ -57,3 +57,4 @@ Open [http://localhost:3000](http://localhost:3000)
    - Start: `npm run start` (binds automatically to Railway's dynamic `$PORT`).
 3. (Optional) Set environment variable in Railway:
    - `JWT_SECRET=any-long-secure-random-secret`
+

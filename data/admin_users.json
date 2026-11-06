@@ -1,0 +1,23 @@
+[
+  {
+    "id": "usr_admin_01",
+    "name": "Karim El-Sayed (General Director)",
+    "email": "admin@uthfestival.com",
+    "role": "ADMIN",
+    "passwordHash": "$2a$10$QkBwq/n5e2B.5xJI7cYDPedMqClsV6b69/shnNzdK0UmUWGqUx.sa"
+  },
+  {
+    "id": "usr_jury_02",
+    "name": "Layla Mansour (Lead Artistic Jury)",
+    "email": "jury@uthfestival.com",
+    "role": "RECRUITMENT_OFFICER",
+    "passwordHash": "$2a$10$L3AROT6AmUDbX1DFal7nvOH6aIH/wi.vHeObsp/fT1Ekx6cdc66Wq"
+  },
+  {
+    "id": "usr_sec_03",
+    "name": "Tarek Zaki (Operations & Compliance)",
+    "email": "security@uthfestival.com",
+    "role": "SECURITY_REVIEWER",
+    "passwordHash": "$2a$10$pl1hEClhTI0C0fWxOcxu8uHNguPZVivDlNDTXSrNea2qMPKZI2ZhW"
+  }
+]

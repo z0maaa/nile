@@ -1,0 +1,26 @@
+[
+  {
+    "id": "log_1793991356397_77",
+    "timestamp": "2026-11-06T18:55:56.397Z",
+    "actor": "Karim El-Sayed (General Director)",
+    "role": "ADMIN",
+    "action": "AUDITION_SCHEDULED",
+    "details": "Scheduled audition for 2026-11-19 at 16:30 (IN_PERSON_GEM)."
+  },
+  {
+    "id": "log_1793991333419_922",
+    "timestamp": "2026-11-06T18:55:33.419Z",
+    "actor": "Moustafa Kamal El-Din El-Shafei",
+    "role": "APPLICANT",
+    "action": "APPLICATION_SUBMITTED",
+    "details": "New registration: UTH-2026-3084 (Arabic Singer)"
+  },
+  {
+    "id": "log_init_01",
+    "timestamp": "2026-11-06T18:54:29.859Z",
+    "actor": "System Initialization",
+    "role": "SYSTEM",
+    "action": "DATABASE_INITIALIZED",
+    "details": "Seeded UTH Festival 2026 database with 12 demo applicants across Egyptian governorates."
+  }
+]
